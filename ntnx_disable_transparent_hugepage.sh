@@ -51,7 +51,7 @@ BACKUPDIR=/root/NtnxBestPractices
 
 if [ ! -d "${BACKUPDIR}" ]; then mkdir -p ${BACKUPDIR}; fi
 
-/bin/cp -fpd /etc/default/grub ${BACKUPDIR}//etc/default/grub-DISABLE-THP
+/bin/cp -fpd /etc/default/grub ${BACKUPDIR}/grub-DISABLE-THP
 
 #################
 ## UPDATE FILES
