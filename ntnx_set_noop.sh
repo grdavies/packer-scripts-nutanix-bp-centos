@@ -51,7 +51,7 @@ BACKUPDIR=/root/NtnxBestPractices
 
 if [ ! -d "${BACKUPDIR}" ]; then mkdir -p ${BACKUPDIR}; fi
 
-/bin/cp -fpd /etc/default/grub ${BACKUPDIR}//etc/default/grub-DISABLE-NOOP
+/bin/cp -fpd /etc/default/grub ${BACKUPDIR}/grub-DISABLE-NOOP
 
 #################
 ## UPDATE GRUB
