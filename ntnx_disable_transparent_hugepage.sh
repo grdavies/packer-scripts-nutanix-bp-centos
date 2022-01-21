@@ -56,7 +56,7 @@ if [ ! -d "${BACKUPDIR}" ]; then mkdir -p ${BACKUPDIR}; fi
 #################
 ## UPDATE FILES
 #################
-/usr/bin/grep -q "transparent_hugepage=" /etc/default/grub && sed "s/^transparent_hugepage=.*/transparent_hugepage=never/" -i /etc/default/grub || sed -i 's/GRUB_CMDLINE_LINUX="[^"]*/& transparent_hugepage=never/' /etc/default/grub
+/usr/bin/grep -q "transparent_hugepage=" /etc/default/grub && /usr/bin/sed "s/^transparent_hugepage=.*/transparent_hugepage=never/" -i /etc/default/grub || /usr/bin/sed -i 's/GRUB_CMDLINE_LINUX="[^"]*/& transparent_hugepage=never/' /etc/default/grub
 
 ##################
 ## REBUILD GRUB CONFIG

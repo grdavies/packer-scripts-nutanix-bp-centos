@@ -46,6 +46,12 @@ set -o errexit
 BACKUPDIR=/root/NtnxBestPractices
 
 #################
+## BACKUP FILES
+#################
+
+if [ ! -d "${BACKUPDIR}" ]; then mkdir -p ${BACKUPDIR}; fi
+
+#################
 ## INSTALL PACKAGES
 #################
 # /usr/bin/yum install -y iscsi-initiator-utils 2> /dev/null

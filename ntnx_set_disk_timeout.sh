@@ -45,10 +45,16 @@ set -o errexit
 
 BACKUPDIR=/root/NtnxBestPractices
 
+#################
+## BACKUP FILES
+#################
+
+if [ ! -d "${BACKUPDIR}" ]; then mkdir -p ${BACKUPDIR}; fi
+
 ##################
 ## CREATE UDEV RULE
 ##################
-cat > ${BACKUPDIR}/99-nutanix-disk_timeout.rules << 'EOFUDEVRULE'
+/usr/bin/cat > ${BACKUPDIR}/99-nutanix-disk_timeout.rules << 'EOFUDEVRULE'
 ACTION=="add", SUBSYSTEMS=="scsi", ATTRS{vendor}=="NUTANIX ", ATTRS{model}=="VDISK", RUN+="/bin/sh -c 'echo 60 >/sys$DEVPATH/device/timeout'"
 EOFUDEVRULE
 
@@ -62,7 +68,7 @@ EOFUDEVRULE
 ##################
 ## UPDATE ANY EXISTING DISKS
 ##################
-lsscsi | grep NUTANIX | awk '{print $NF}' | awk -F"/" '{print $NF}' | grep -v "-" | while read LUN
+/usr/bin/lsscsi | /usr/bin/grep NUTANIX | /usr/bin/awk '{print $NF}' | /usr/bin/awk -F"/" '{print $NF}' | /usr/bin/grep -v "-" | while read LUN
 do
   /usr/bin/echo 60 > /sys/block/${LUN}/device/timeout
 done

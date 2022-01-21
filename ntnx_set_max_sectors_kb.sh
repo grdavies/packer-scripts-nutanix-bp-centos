@@ -45,12 +45,22 @@ set -o errexit
 
 BACKUPDIR=/root/NtnxBestPractices
 
+#################
+## BACKUP FILES
+#################
+
+if [ ! -d "${BACKUPDIR}" ]; then mkdir -p ${BACKUPDIR}; fi
+
 ##################
 ## CREATE UDEV RULE
 ##################
-cat > ${BACKUPDIR}/99-nutanix-max_sectors_kb.rules << 'EOFUDEVRULE'
+/usr/bin/cat > ${BACKUPDIR}/99-nutanix-max_sectors_kb.rules << 'EOFUDEVRULE'
 ACTION=="add", SUBSYSTEMS=="scsi", ATTRS{vendor}=="NUTANIX ", ATTRS{model}=="VDISK", RUN+="/bin/sh -c 'echo 1024 >/sys$DEVPATH/queue/max_sectors_kb'"
 EOFUDEVRULE
+
+# /usr/bin/tee -a /etc/udev/rules.d/99-nutanix-max_sectors_kb.rules > /dev/null <<EOT
+# ACTION=="add", SUBSYSTEMS=="scsi", ATTRS{vendor}=="NUTANIX ", ATTRS{model}=="VDISK", RUN+="/bin/sh -c 'echo 1024 >/sys$DEVPATH/queue/max_sectors_kb'"
+# EOT
 
 #####################
 ## DEPLOY NEW FILES
@@ -62,7 +72,7 @@ EOFUDEVRULE
 ##################
 ## UPDATE ANY EXISTING DISKS
 ##################
-lsscsi | grep NUTANIX | awk '{print $NF}' | awk -F"/" '{print $NF}' | grep -v "-" | while read LUN
+/usr/bin/lsscsi | /usr/bin/grep NUTANIX | /usr/bin/awk '{print $NF}' | /usr/bin/awk -F"/" '{print $NF}' | /usr/bin/grep -v "-" | while read LUN
 do
   /usr/bin/echo 1024 > /sys/block/${LUN}/queue/max_sectors_kb
 done

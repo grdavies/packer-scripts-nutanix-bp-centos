@@ -51,6 +51,12 @@ BACKUPDIR=/root/NtnxBestPractices
 
 if [ ! -d "${BACKUPDIR}" ]; then mkdir -p ${BACKUPDIR}; fi
 
+#################
+## BACKUP FILES
+#################
+
+if [ ! -d "${BACKUPDIR}" ]; then mkdir -p ${BACKUPDIR}; fi
+
 /bin/cp -fpd /proc/sys/vm/overcommit_memory ${BACKUPDIR}/sys_vm_overcommit_memory-DEFAULT
 /bin/cp -fpd /proc/sys/vm/dirty_background_ratio ${BACKUPDIR}/sys_vm_dirty_background_ratio-DEFAULT
 /bin/cp -fpd /proc/sys/vm/dirty_ratio ${BACKUPDIR}/sys_vm_dirty_ratio-DEFAULT

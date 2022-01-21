@@ -54,9 +54,15 @@ if [ ! -d "${BACKUPDIR}" ]; then mkdir -p ${BACKUPDIR}; fi
 /bin/cp -fpd /etc/default/grub ${BACKUPDIR}/grub-DISABLE-NOOP
 
 #################
+## BACKUP FILES
+#################
+
+if [ ! -d "${BACKUPDIR}" ]; then mkdir -p ${BACKUPDIR}; fi
+
+#################
 ## UPDATE GRUB
 #################
-grep -q "elevator=" /etc/default/grub && sudo sed "s/^elevator=.*/elevator=noop/" -i /etc/default/grub || sudo sed -i 's/GRUB_CMDLINE_LINUX="[^"]*/& elevator=noop/' /etc/default/grub
+/usr/bin/grep -q "elevator=" /etc/default/grub && /usr/bin/sed "s/^elevator=.*/elevator=noop/" -i /etc/default/grub || /usr/bin/sed -i 's/GRUB_CMDLINE_LINUX="[^"]*/& elevator=noop/' /etc/default/grub
 
 ##################
 ## UPDATE ANY EXISTING DISKS
