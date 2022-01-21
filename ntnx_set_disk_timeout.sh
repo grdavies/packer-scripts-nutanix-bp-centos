@@ -61,7 +61,7 @@ EOFUDEVRULE
 #####################
 ## DEPLOY NEW FILES
 #####################
-/bin/cp -f ${BACKUPDIR}/99-nutanix-max_sectors_kb.rules /etc/udev/rules.d/99-nutanix-disk_timeout.rules
+/bin/cp -f ${BACKUPDIR}/99-nutanix-disk_timeout.rules /etc/udev/rules.d/99-nutanix-disk_timeout.rules
 /bin/chown root:root /etc/udev/rules.d/99-nutanix-disk_timeout.rules
 /bin/chmod 0600      /etc/udev/rules.d/99-nutanix-disk_timeout.rules
 
